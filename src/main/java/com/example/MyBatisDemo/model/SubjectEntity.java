@@ -1,16 +1,16 @@
 package com.example.MyBatisDemo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubjectEntity {
 
     private Long id;
     private String name;
-    private String credits;
-    private Long teacher_id;
+    private int credits;
+    private TeacherEntity teacher;
 }
