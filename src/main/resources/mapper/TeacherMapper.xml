@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.MyBatisDemo.repository.TeacherRepository">
+    <resultMap id="TeacherResultMap" type="com.example.MyBatisDemo.model.TeacherEntity">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="age" column="age" />
+        <result property="email" column="email" />
+        <result property="city" column="city" />
+        <collection property="subjects" ofType="com.example.MyBatisDemo.model.TeacherEntity" column="id" select="selectSubjectsForTeacher" javaType="ArrayList" />
+    </resultMap>
+
+    <select id="findAllTeachers" resultMap="TeacherResultMap" >
+        select * from teacher
+    </select>
+
+    <select id="findTeacherById" resultMap="TeacherResultMap" parameterType="java.lang.Long">
+        select * from teacher where id = #{id}
+    </select>
+
+    <select id="selectSubjectsForTeacher" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.TeacherEntity" >
+        select id, name, credits from subject where id = #{id}
+    </select>
+</mapper>

@@ -11,21 +11,15 @@
         <collection property="subjects" ofType="com.example.MyBatisDemo.model.SubjectEntity" column="id" select="selectSubjectsForStudent" javaType="ArrayList" />
     </resultMap>
 
-    <resultMap id="SubjectResultMap1" type="com.example.MyBatisDemo.model.SubjectEntity">
-        <id property="id" column="id" />
-        <result property="name" column="name" />
-        <result property="credits" column="credits" />
-    </resultMap>
-
     <select id="findAllStudents" resultMap="StudentResultMap" >
         select * from student
     </select>
 
-    <select id="findStudentById" resultMap="StudentResultMap" parameterMap="java.lang.Long">
+    <select id="findStudentById" resultMap="StudentResultMap" parameterType="java.lang.Long">
         select * from student where id = #{id}
     </select>
 
-    <select id="selectSubjectsForStudent" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.SubjectEntity" resultMap="SubjectResultMap1">
+    <select id="selectSubjectsForStudent" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.SubjectEntity" >
         select id, name, credits from subject where id = #{id}
     </select>
 </mapper>

@@ -6,18 +6,18 @@
         <id property="id" column="id" />
         <result property="name" column="name" />
         <result property="credits" column="credits" />
-        <result property="teacher" column="teacher_id" />
-        <association property="StudentEntity" column="id" javaType="com.example.MyBatisDemo.model.TeacherEntity" select="selectTeacherForSubject" />
+<!--        <result property="teacher" column="teacher_id" />-->
+<!--        <association property="StudentEntity" column="id" javaType="com.example.MyBatisDemo.model.TeacherEntity" select="selectTeacherForSubject" />-->
     </resultMap>
 
     <select id="findAllSubjects" resultMap="SubjectResultType" >
         select * from subject
     </select>
-    <select id="findSubjectById" resultMap="SubjectResultType" parameterMap="java.lang.Long">
+    <select id="findSubjectById" resultMap="SubjectResultType" parameterType="java.lang.Long">
         select * from subject where id = #{id}
     </select>
 
-    <select id="selectTeacherForSubject" resultType="com.example.MyBatisDemo.model.TeacherEntity" parameterType="java.lang.Long">
-        select * from teacher where id = #{id}
-    </select>
+<!--    <select id="selectTeacherForSubject" resultType="com.example.MyBatisDemo.model.TeacherEntity" parameterType="java.lang.Long">-->
+<!--        select * from teacher where id = #{id}-->
+<!--    </select>-->
 </mapper>

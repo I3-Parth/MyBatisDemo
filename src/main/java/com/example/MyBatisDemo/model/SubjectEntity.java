@@ -12,5 +12,5 @@ public class SubjectEntity {
     private Long id;
     private String name;
     private int credits;
-    private TeacherEntity teacher;
+//    private TeacherEntity teacher;
 }
