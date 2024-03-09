@@ -9,4 +9,5 @@ import java.util.List;
 public interface TeacherRepository {
     List<TeacherEntity> findAllTeachers();
     TeacherEntity findTeacherById(Long id);
+    TeacherEntity findSubjectsByTeacherId(Long id);
 }

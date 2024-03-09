@@ -11,15 +11,27 @@
         <collection property="subjects" ofType="com.example.MyBatisDemo.model.TeacherEntity" column="id" select="selectSubjectsForTeacher" javaType="ArrayList" />
     </resultMap>
 
-    <select id="findAllTeachers" resultMap="TeacherResultMap" >
-        select * from teacher
+    <resultMap id="TeacherInfoResultMap" type="com.example.MyBatisDemo.model.TeacherEntity">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="age" column="age" />
+        <result property="email" column="email" />
+        <result property="city" column="city" />
+    </resultMap>
+
+    <select id="findAllTeachers" resultMap="TeacherInfoResultMap" >
+        select id, name, age, email, city from teacher
     </select>
 
-    <select id="findTeacherById" resultMap="TeacherResultMap" parameterType="java.lang.Long">
+    <select id="findTeacherById" resultMap="TeacherInfoResultMap" parameterType="java.lang.Long">
+        select id, name, age, email, city from teacher where id = #{id}
+    </select>
+
+    <select id="findSubjectsByTeacherId" resultMap="TeacherResultMap" parameterType="java.lang.Long">
         select * from teacher where id = #{id}
     </select>
 
-    <select id="selectSubjectsForTeacher" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.TeacherEntity" >
-        select id, name, credits from subject where id = #{id}
+    <select id="selectSubjectsForTeacher" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.SubjectEntity" >
+        select * from subject where teacher_id = #{id}
     </select>
 </mapper>

@@ -28,4 +28,9 @@ public class TeacherController {
     public TeacherEntity getTeacherById(@PathVariable(value = "id")Long id){
         return teacherRepository.findTeacherById(id);
     }
+
+    @GetMapping("/{id}/subjects")
+    public TeacherEntity findSubjectsByTeacherId(@PathVariable(value = "id")Long id){
+        return teacherRepository.findSubjectsByTeacherId(id);
+    }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface StudentRepository {
     List<StudentEntity> findAllStudents();
     StudentEntity findStudentById(Long id);
+    StudentEntity findSubjectsByStudentId(Long id);
 }
