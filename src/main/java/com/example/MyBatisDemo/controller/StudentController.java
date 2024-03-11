@@ -4,6 +4,8 @@ import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.repository.StudentRepository;
 import com.example.MyBatisDemo.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,18 @@ public class StudentController {
 
     @GetMapping("/{id}/subjects")
     public StudentEntity findSubjectsByStudentId(@PathVariable(value = "id")Long id){
+        return studentRepository.findSubjectsByStudentId(id);
+    }
+
+    @PostMapping
+    public StudentEntity addStudent(@RequestBody StudentEntity student){
+        Long id = studentRepository.addStudent(student);
+        return studentRepository.findStudentById(id);
+    }
+
+    @PostMapping("/{id}/subjects")
+    public StudentEntity assignSubjectsToStudent(@PathVariable(value = "id")Long id, @RequestBody List<Long> subject_id){
+        studentRepository.assignSubjectsToStudent(id,subject_id);
         return studentRepository.findSubjectsByStudentId(id);
     }
 }

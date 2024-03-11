@@ -9,6 +9,7 @@
         <result property="email" column="email" />
         <result property="city" column="city" />
         <collection property="subjects" ofType="com.example.MyBatisDemo.model.TeacherEntity" column="id" select="selectSubjectsForTeacher" javaType="ArrayList" />
+<!--        <association property="subjects" column="id" -->
     </resultMap>
 
     <resultMap id="TeacherInfoResultMap" type="com.example.MyBatisDemo.model.TeacherEntity">
@@ -34,4 +35,8 @@
     <select id="selectSubjectsForTeacher" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.SubjectEntity" >
         select * from subject where teacher_id = #{id}
     </select>
+
+    <insert id="addTeacher" parameterType="com.example.MyBatisDemo.model.TeacherEntity">
+        insert into teacher (name, age, email, city) values (#{name}, #{age}, #{email}, #{city})
+    </insert>
 </mapper>

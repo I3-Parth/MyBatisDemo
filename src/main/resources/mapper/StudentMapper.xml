@@ -34,4 +34,18 @@
     <select id="selectSubjectsForStudent" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.SubjectEntity" >
         select s.id, s.name, s.credits from subject s INNER JOIN student_subject ss on s.id = ss.subject_id where ss. student_id = #{id}
     </select>
+
+    <insert id="addStudent" parameterType="com.example.MyBatisDemo.model.StudentEntity" >
+        insert into student (name, age, email, city) values (#{name}, #{age}, #{email}, #{city})
+        <selectKey order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <insert id="assignSubjectsToStudent">
+        <foreach collection="subject_id" item="subject_id" separator=";">
+            INSERT INTO student_subject ( student_id, subject_id) VALUES ( #{student_id}, #{subject_id})
+        </foreach>
+    </insert>
+
 </mapper>

@@ -5,10 +5,7 @@ import com.example.MyBatisDemo.model.TeacherEntity;
 import com.example.MyBatisDemo.repository.SubjectRepository;
 import com.example.MyBatisDemo.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,11 @@ public class TeacherController {
     @GetMapping("/{id}/subjects")
     public TeacherEntity findSubjectsByTeacherId(@PathVariable(value = "id")Long id){
         return teacherRepository.findSubjectsByTeacherId(id);
+    }
+
+    @PostMapping
+    public TeacherEntity addTeacher(@RequestBody TeacherEntity teacher){
+        Long id = teacherRepository.addTeacher(teacher);
+        return teacherRepository.findTeacherById(id);
     }
 }

@@ -4,10 +4,7 @@ import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.model.SubjectEntity;
 import com.example.MyBatisDemo.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,11 @@ public class SubjectController {
     @GetMapping("/{id}")
     public SubjectEntity getSubjectById(@PathVariable(value = "id")Long id){
         return subjectRepository.findSubjectById(id);
+    }
+
+    @PostMapping
+    public SubjectEntity addSubject(@RequestBody SubjectEntity subject){
+        Long id = subjectRepository.addSubject(subject);
+        return subjectRepository.displaySubjectById(id);
     }
 }

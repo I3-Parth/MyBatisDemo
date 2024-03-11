@@ -9,6 +9,13 @@
         <association property="teacher" column="teacher_id" javaType="com.example.MyBatisDemo.model.TeacherEntity" select="selectTeacherForSubject" />
     </resultMap>
 
+    <resultMap id="DisplaySubjectResultMap" type="com.example.MyBatisDemo.model.SubjectEntity">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="credits" column="credits" />
+        <result property="teacher.id" column="teacher_id" />
+    </resultMap>
+
     <resultMap id="TeacherResultType" type="com.example.MyBatisDemo.model.TeacherEntity">
         <id property="id" column="id" />
         <result property="name" column="name" />
@@ -17,13 +24,23 @@
         <result property="city" column="city" />
     </resultMap>
 
-    <select id="findAllSubjects" resultMap="SubjectResultType" >
+    <select id="findAllSubjects" resultMap="DisplaySubjectResultMap" >
         select * from subject
     </select>
+
     <select id="findSubjectById" resultMap="SubjectResultType" parameterType="java.lang.Long">
         select * from subject where id = #{id}
     </select>
-    <select id="selectTeacherForSubject" parameterType="java.lang.Long" resultMap="TeacherResultType">
-        select t.id, t.name, t.age, t.email, t.city from teacher t INNER JOIN teacher_subject ts on t.id = ts.teacher_id where ts.subject_id = #{id}
+
+    <select id="displaySubjectById" resultMap="SubjectResultType" parameterType="java.lang.Long">
+        select * from subject where id = #{id}
     </select>
+
+    <select id="selectTeacherForSubject" parameterType="java.lang.Long" resultMap="TeacherResultType">
+        select t.id, t.name, t.age, t.email, t.city from teacher t INNER JOIN subject s on t.id = s.teacher_id where s.id = #{id}
+    </select>
+
+    <insert id="addSubject" parameterType="com.example.MyBatisDemo.model.SubjectEntity">
+        insert into subject (id, name, credits, teacher_id) values (#{id}, #{name}, #{credits}, #{teacher.id})
+    </insert>
 </mapper>
