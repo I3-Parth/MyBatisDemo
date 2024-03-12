@@ -1,34 +1,35 @@
 package com.example.MyBatisDemo.mapstructMapper;
 
-import com.example.MyBatisDemo.dto.StudentAdditionDto;
-import com.example.MyBatisDemo.dto.StudentDisplayDto;
-import com.example.MyBatisDemo.dto.StudentSubjectsAdditionDto;
-import com.example.MyBatisDemo.dto.StudentSubjectsDisplayDto;
+import com.example.MyBatisDemo.dto.*;
 import com.example.MyBatisDemo.model.StudentEntity;
+import com.example.MyBatisDemo.model.TeacherEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
-public interface StudentMapper {
+public interface TeacherMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "age", target = "age")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "city", target = "city")
-    StudentEntity convertStudentAdditionDtoToStudentEntity(StudentAdditionDto studentAdditionDto);
+    TeacherEntity convertTeacherAdditionDtoToTeacherEntity(TeacherAdditionDto teacherAdditionDto);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "age", target = "age")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "city", target = "city")
-    StudentDisplayDto convertStudentEntityToStudentDisplayDto(StudentEntity studentEntity);
+    TeacherDisplayDto convertTeacherEntityToTeacherDisplayDto(TeacherEntity teacherEntity);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "age", target = "age")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "city", target = "city")
-    @Mapping(source = "subjects", target = "subjects", ignore = true)
-    StudentSubjectsDisplayDto convertStudentEntityToStudentSubjectsDisplayDto(StudentEntity studentEntity);
+    @Mapping(source = "subjects", target = "subjects")
+    TeacherSubjectsDisplayDto convertTeacherEntityToTeacherSubjectsDisplayDto(TeacherEntity teacherEntity);
+
+
+//    TeacherEntity getTeacherEntity(Long teacherId);
 }

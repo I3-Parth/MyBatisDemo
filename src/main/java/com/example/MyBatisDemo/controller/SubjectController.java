@@ -1,8 +1,12 @@
 package com.example.MyBatisDemo.controller;
 
+import com.example.MyBatisDemo.dto.SubjectAdditionDto;
+import com.example.MyBatisDemo.dto.SubjectDisplayDto;
+import com.example.MyBatisDemo.dto.SubjectTeacherDisplayDto;
 import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.model.SubjectEntity;
 import com.example.MyBatisDemo.repository.SubjectRepository;
+import com.example.MyBatisDemo.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,21 +17,20 @@ import java.util.List;
 public class SubjectController {
 
     @Autowired
-    SubjectRepository subjectRepository;
+    SubjectService subjectService;
 
     @GetMapping
-    public List<SubjectEntity> getAllSubjects(){
-        return subjectRepository.findAllSubjects();
+    public List<SubjectDisplayDto> getAllSubjects(){
+        return subjectService.getAllSubjects();
     }
 
     @GetMapping("/{id}")
-    public SubjectEntity getSubjectById(@PathVariable(value = "id")Long id){
-        return subjectRepository.findSubjectById(id);
+    public SubjectTeacherDisplayDto getSubjectById(@PathVariable(value = "id")Long id){
+        return subjectService.getSubjectById(id);
     }
 
     @PostMapping
-    public SubjectEntity addSubject(@RequestBody SubjectEntity subject){
-        Long id = subjectRepository.addSubject(subject);
-        return subjectRepository.findSubjectById(id);
+    public SubjectTeacherDisplayDto addSubject(@RequestBody SubjectAdditionDto subjectAdditionDto){
+        return subjectService.addSubject(subjectAdditionDto);
     }
 }

@@ -12,5 +12,5 @@ public interface TeacherRepository {
     TeacherEntity findTeacherById(Long id);
     TeacherEntity findSubjectsByTeacherId(Long id);
 
-    Long addTeacher(TeacherEntity teacher);
+    void addTeacher(TeacherEntity teacher);
 }
