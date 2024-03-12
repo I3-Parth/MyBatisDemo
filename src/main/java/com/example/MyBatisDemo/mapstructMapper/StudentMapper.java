@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
 public interface StudentMapper {
-    @Mapping(source = "id", target = "id")
+
     @Mapping(source = "name", target = "name")
     @Mapping(source = "age", target = "age")
     @Mapping(source = "email", target = "email")

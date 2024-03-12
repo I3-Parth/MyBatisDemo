@@ -39,9 +39,8 @@ public class StudentService {
         return studentMapper.convertStudentEntityToStudentSubjectsDisplayDto(studentRepository.findSubjectsByStudentId(id));
     }
 
-    public StudentDisplayDto addStudent(StudentAdditionDto studentAdditionDto){
-        studentRepository.addStudent(studentMapper.convertStudentAdditionDtoToStudentEntity(studentAdditionDto));
-        return getStudentById(studentAdditionDto.getId());
+    public boolean addStudent(StudentAdditionDto studentAdditionDto){
+        return studentRepository.addStudent(studentMapper.convertStudentAdditionDtoToStudentEntity(studentAdditionDto));
     }
 
     public StudentSubjectsDisplayDto assignSubjectsToStudent(Long id, StudentSubjectsAdditionDto subjectsAdditionDto)throws ResourceNotFoundException {

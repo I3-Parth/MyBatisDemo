@@ -4,11 +4,14 @@ package com.example.MyBatisDemo.mapstructMapper;
 import com.example.MyBatisDemo.dto.SubjectAdditionDto;
 import com.example.MyBatisDemo.dto.SubjectDisplayDto;
 import com.example.MyBatisDemo.dto.SubjectTeacherDisplayDto;
+import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.model.SubjectEntity;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import com.example.MyBatisDemo.model.TeacherEntity;
 import com.example.MyBatisDemo.dto.*;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
@@ -16,7 +19,6 @@ import java.util.List;
 @Mapper(componentModel = "spring",uses = TeacherMapper.class)
 public interface SubjectMapper {
 
-    @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "credits", target = "credits")
     @Mapping(target = "teacher", expression = "java(getTeacherEntity(subjectAdditionDto))")

@@ -33,8 +33,7 @@ public class TeacherService {
         return teacherMapper.convertTeacherEntityToTeacherSubjectsDisplayDto(teacherRepository.findSubjectsByTeacherId(id));
     }
 
-    public TeacherDisplayDto addTeacher(TeacherAdditionDto teacherAdditionDto){
-        teacherRepository.addTeacher(teacherMapper.convertTeacherAdditionDtoToTeacherEntity(teacherAdditionDto));
-        return getTeacherById(teacherAdditionDto.getId());
+    public boolean addTeacher(TeacherAdditionDto teacherAdditionDto){
+        return teacherRepository.addTeacher(teacherMapper.convertTeacherAdditionDtoToTeacherEntity(teacherAdditionDto));
     }
 }

@@ -37,6 +37,6 @@
     </select>
 
     <insert id="addSubject" parameterType="com.example.MyBatisDemo.model.SubjectEntity">
-        insert into subject (id, name, credits, teacher_id) values (#{id}, #{name}, #{credits}, #{teacher.id})
+        insert into subject (name, credits, teacher_id) values (#{name}, #{credits}, #{teacher.id})
     </insert>
 </mapper>

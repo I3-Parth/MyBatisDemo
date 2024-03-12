@@ -37,7 +37,7 @@ public class TeacherController {
     }
 
     @PostMapping
-    public TeacherDisplayDto addTeacher(@Valid @RequestBody TeacherAdditionDto teacherAdditionDto){
+    public boolean addTeacher(@Valid @RequestBody TeacherAdditionDto teacherAdditionDto){
         return teacherService.addTeacher(teacherAdditionDto);
     }
 }

@@ -40,8 +40,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentDisplayDto addStudent(@Valid @RequestBody StudentAdditionDto studentAdditionDto){
-        return studentService.addStudent(studentAdditionDto);
+    public boolean addStudent(@Valid @RequestBody StudentAdditionDto studentAdditionDto){
+         return studentService.addStudent(studentAdditionDto);
     }
 
     @PostMapping("/{id}/subjects")

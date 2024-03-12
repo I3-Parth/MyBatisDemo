@@ -13,6 +13,6 @@ public interface StudentRepository {
     List<StudentEntity> findAllStudents();
     StudentEntity findStudentById(Long id);
     StudentEntity findSubjectsByStudentId(Long id);
-    void addStudent(StudentEntity student);
+    boolean addStudent(StudentEntity student);
     void assignSubjectsToStudent(@Param("studentId") Long studentId, @Param("subjectIds") List<Long> subjectIds);
 }

@@ -11,5 +11,5 @@ public interface SubjectRepository {
     List<SubjectEntity> findAllSubjects();
     SubjectEntity findSubjectById(Long id);
     SubjectEntity displaySubjectById(Long id);
-    void addSubject(SubjectEntity subject);
+    boolean addSubject(SubjectEntity subject);
 }
