@@ -36,16 +36,12 @@
     </select>
 
     <insert id="addStudent" parameterType="com.example.MyBatisDemo.model.StudentEntity" >
-        insert into student (name, age, email, city) values (#{name}, #{age}, #{email}, #{city})
-        <selectKey order="AFTER" resultType="java.lang.Long">
-            SELECT LAST_INSERT_ID() AS id
-        </selectKey>
+        insert into student (id, name, age, email, city) values (#{id} ,#{name}, #{age}, #{email}, #{city})
     </insert>
 
-    <insert id="assignSubjectsToStudent">
-        <foreach collection="subjectIds" item="subjectId" separator=";">
-            INSERT INTO student_subject ( student_id, subject_id) VALUES ( #{studentId}, #{subjectId})
+    <insert id="assignSubjectsToStudent" parameterType="map">
+        <foreach collection="subjectIds" item="subjectId" separator=";" >
+            INSERT INTO student_subject (id, student_id, subject_id) VALUES ((SELECT MAX(id) + 1 AS id FROM student_subject), #{studentId}, #{subjectId})
         </foreach>
     </insert>
-
 </mapper>
