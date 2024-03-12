@@ -31,7 +31,7 @@ public class SubjectController {
     }
 
     @PostMapping
-    public boolean addSubject(@Valid @RequestBody SubjectAdditionDto subjectAdditionDto){
+    public SubjectDisplayDto addSubject(@Valid @RequestBody SubjectAdditionDto subjectAdditionDto){
         return subjectService.addSubject(subjectAdditionDto);
     }
 }

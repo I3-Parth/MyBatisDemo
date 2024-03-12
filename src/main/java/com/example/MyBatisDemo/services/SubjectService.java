@@ -30,7 +30,9 @@ public class SubjectService {
         return subjectMapper.convertSubjectEntityToSubjectTeacherDisplayDto(subjectRepository.findSubjectById(id));
     }
 
-    public boolean addSubject(SubjectAdditionDto subjectAdditionDto){
-        return subjectRepository.addSubject(subjectMapper.convertSubjectAdditionDtoToSubjectEntity(subjectAdditionDto));
+    public SubjectDisplayDto addSubject(SubjectAdditionDto subjectAdditionDto){
+        SubjectEntity subjectEntity = subjectMapper.convertSubjectAdditionDtoToSubjectEntity(subjectAdditionDto);
+        subjectRepository.addSubject(subjectEntity);
+        return subjectMapper.convertSubjectEntityToSubjectDisplayDto(subjectEntity);
     }
 }

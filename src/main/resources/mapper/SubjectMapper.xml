@@ -36,7 +36,7 @@
         select t.id, t.name, t.age, t.email, t.city from teacher t INNER JOIN subject s on t.id = s.teacher_id where s.id = #{id}
     </select>
 
-    <insert id="addSubject" parameterType="com.example.MyBatisDemo.model.SubjectEntity">
+    <insert id="addSubject" parameterType="com.example.MyBatisDemo.model.SubjectEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into subject (name, credits, teacher_id) values (#{name}, #{credits}, #{teacher.id})
     </insert>
 </mapper>
