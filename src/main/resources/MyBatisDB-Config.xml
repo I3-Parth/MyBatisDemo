@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    
+    <typeAliases>
+        <typeAlias type=" com.example.MyBatisDemo.model.StudentEntity" alias="StudentEntity" />
+        <typeAlias type="com.example.MyBatisDemo.model.SubjectEntity" alias="SubjectEntity" />
+        <typeAlias type="com.example.MyBatisDemo.model.TeacherEntity" alias="TeacherEntity" />
+    </typeAliases>
+
+    <environments default = "development">
+        <environment id = "development">
+            <transactionManager type = "JDBC"/>
+
+            <dataSource type = "POOLED">
+                <property name = "driver" value = "org.postgresql.Driver"/>
+                <property name = "url" value = "jdbc:postgresql://localhost:5432/messManagement"/>
+                <property name = "username" value = "postgres"/>
+                <property name = "password" value = "postgres"/>
+            </dataSource>
+
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource = "mybatis/mapper/StudentMapper.xml" />
+        <mapper resource = "mybatis/mapper/SubjectMapper.xml" />
+        <mapper resource = "mybatis/mapper/TeacherMapper.xml" />
+    </mappers>
+
+</configuration>

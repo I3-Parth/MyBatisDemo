@@ -2,11 +2,11 @@
 
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    
+
     <typeAliases>
-        <typeAlias type=" com.example.MyBatisDemo.model.StudentEntity" alias="StudentEntity" />
-        <typeAlias type="com.example.MyBatisDemo.model.SubjectEntity" alias="SubjectEntity" />
-        <typeAlias type="com.example.MyBatisDemo.model.TeacherEntity" alias="TeacherEntity" />
+        <typeAlias type=" com.example.messmanagement.model.MessEntity" alias="MessEntity" />
+        <typeAlias type="com.example.messmanagement.model.HostelEntity" alias="HostelEntity" />
+        <typeAlias type="com.example.messmanagement.model.MessOwnerEntity" alias="MessOwnerEntity" />
     </typeAliases>
 
     <environments default = "development">
@@ -22,11 +22,10 @@
 
         </environment>
     </environments>
-
     <mappers>
-        <mapper resource = "mapper/StudentMapper.xml" />
-        <mapper resource="mapper/SubjectMapper.xml" />
-        <mapper resource="mapper/TeacherMapper.xml" />
+        <mapper resource = "mess-management/mapper/MessMapper.xml" />
+        <mapper resource="mess-management/mapper/HostelMapper.xml" />
+        <mapper resource="mess-management/mapper/MessOwnerMapper.xml" />
     </mappers>
 
 </configuration>
