@@ -25,8 +25,10 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public List<StudentDisplayDto> getAllStudents(){
-        return studentService.getAllStudents();
+    public List<StudentDisplayDto> getAllStudents(@RequestParam(name = "name",required = false)String name,
+                                                  @RequestParam(name = "age",required = false)Integer age,
+                                                  @RequestParam(name = "city",required = false)String city){
+        return studentService.getAllStudents(name, age, city);
     }
 
     @GetMapping("/{id}")

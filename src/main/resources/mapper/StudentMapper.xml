@@ -19,9 +19,20 @@
         <result property="city" column="city" />
     </resultMap>
 
-    <select id="findAllStudents" resultMap="StudentInfoResultMap" >
-        select id, name, age, email, city from student
-    </select>
+        <select id="findAllStudents" parameterType="map" resultMap="StudentInfoResultMap" >
+            select id, name, age, email, city from student
+            <where>
+                <if test="name != null">
+                    AND name like #{name}
+                </if>
+                <if test="city != null">
+                    AND city like #{city}
+                </if>
+                <if test="age != null">
+                    AND age = #{age}
+                </if>
+            </where>
+        </select>
 
     <select id="findStudentById" resultMap="StudentInfoResultMap" parameterType="java.lang.Long">
         select id, name, age, email, city from student where id = #{id}

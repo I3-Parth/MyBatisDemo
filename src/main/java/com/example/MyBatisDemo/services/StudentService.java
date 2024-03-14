@@ -27,8 +27,8 @@ public class StudentService {
 
     @Autowired
     SubjectRepository subjectRepository;
-    public List<StudentDisplayDto> getAllStudents(){
-        return studentMapper.convertListOfStudentEntityToStudentDisplayDto(studentRepository.findAllStudents());
+    public List<StudentDisplayDto> getAllStudents(String name, Integer age, String city){
+        return studentMapper.convertListOfStudentEntityToStudentDisplayDto(studentRepository.findAllStudents(name, age, city));
     }
 
     public StudentDisplayDto getStudentById(Long id){
