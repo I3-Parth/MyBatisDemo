@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Mapper
-@Transactional
 public interface TeacherRepository {
     List<TeacherEntity> findAllTeachers();
     TeacherEntity findTeacherById(Long id);
