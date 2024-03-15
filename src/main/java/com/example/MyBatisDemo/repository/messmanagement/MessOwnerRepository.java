@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface MessOwnerRepository {
     List<MessOwnerEntity> findAllMessOwners();
+
+    void addMessOwner(MessOwnerEntity messOwnerEntity);
 }

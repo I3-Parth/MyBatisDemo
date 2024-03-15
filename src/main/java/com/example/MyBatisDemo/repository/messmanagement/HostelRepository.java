@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface HostelRepository {
     List<HostelEntity> findAllHostels();
+
+    void addHostel(HostelEntity hostelEntity);
 }

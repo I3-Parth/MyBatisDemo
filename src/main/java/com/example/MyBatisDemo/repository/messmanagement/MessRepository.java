@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface MessRepository {
     List<MessEntity> findAllMesses();
+
+    void addMess(MessEntity messEntity);
 }
