@@ -7,8 +7,6 @@ import lombok.Data;
 
 @Data
 public class StudentAdditionDto {
-    @NotBlank(message = "id is mandatory")
-    private Long id;
     @NotBlank(message = "name is mandatory")
     private String name;
     @NotBlank(message = "age is mandatory")
