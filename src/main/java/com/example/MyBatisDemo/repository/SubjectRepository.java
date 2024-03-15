@@ -10,6 +10,5 @@ import java.util.List;
 public interface SubjectRepository {
     List<SubjectEntity> findAllSubjects();
     SubjectEntity findSubjectById(Long id);
-    SubjectEntity displaySubjectById(Long id);
     Long addSubject(SubjectEntity subject);
 }

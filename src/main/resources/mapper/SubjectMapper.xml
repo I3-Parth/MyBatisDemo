@@ -32,10 +32,6 @@
         select * from subject where id = #{id}
     </select>
 
-    <select id="displaySubjectById" resultMap="SubjectResultType" parameterType="java.lang.Long">
-        select * from subject where id = #{id}
-    </select>
-
     <select id="selectTeacherForSubject" parameterType="java.lang.Long" resultMap="TeacherResultType">
         select t.id, t.name, t.age, t.email, t.city from teacher t INNER JOIN subject s on t.id = s.teacher_id where s.id = #{id}
     </select>

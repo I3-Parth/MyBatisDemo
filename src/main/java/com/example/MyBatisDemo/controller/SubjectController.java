@@ -28,6 +28,6 @@ public class SubjectController {
     @PostMapping
     public SubjectEntity addSubject(@RequestBody SubjectEntity subject){
         Long id = subjectRepository.addSubject(subject);
-        return subjectRepository.displaySubjectById(id);
+        return subjectRepository.findSubjectById(id);
     }
 }
