@@ -14,5 +14,5 @@ public interface StudentRepository {
     StudentEntity findStudentById(Long id);
     StudentEntity findSubjectsByStudentId(Long id);
     Long addStudent(StudentEntity student);
-    void assignSubjectsToStudent(@Param("student_id") Long student_id, @Param("subject_id") List<Long> subject_id);
+    void assignSubjectsToStudent(@Param("studentId") Long studentId, @Param("subjectIds") List<Long> subjectIds);
 }

@@ -40,8 +40,8 @@ public class StudentController {
     }
 
     @PostMapping("/{id}/subjects")
-    public StudentEntity assignSubjectsToStudent(@PathVariable(value = "id")Long id, @RequestBody List<Long> subject_id){
-        studentRepository.assignSubjectsToStudent(id,subject_id);
+    public StudentEntity assignSubjectsToStudent(@PathVariable(value = "id")Long id, @RequestBody List<Long> subjectIds){
+        studentRepository.assignSubjectsToStudent(id,subjectIds);
         return studentRepository.findSubjectsByStudentId(id);
     }
 }
