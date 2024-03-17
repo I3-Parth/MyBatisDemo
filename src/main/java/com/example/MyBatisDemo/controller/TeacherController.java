@@ -8,6 +8,7 @@ import com.example.MyBatisDemo.model.TeacherEntity;
 import com.example.MyBatisDemo.repository.SubjectRepository;
 import com.example.MyBatisDemo.repository.TeacherRepository;
 import com.example.MyBatisDemo.services.TeacherService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class TeacherController {
     }
 
     @PostMapping
-    public TeacherDisplayDto addTeacher(@RequestBody TeacherAdditionDto teacherAdditionDto){
+    public TeacherDisplayDto addTeacher(@Valid @RequestBody TeacherAdditionDto teacherAdditionDto){
         return teacherService.addTeacher(teacherAdditionDto);
     }
 }

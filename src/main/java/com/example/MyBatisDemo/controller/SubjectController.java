@@ -7,6 +7,7 @@ import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.model.SubjectEntity;
 import com.example.MyBatisDemo.repository.SubjectRepository;
 import com.example.MyBatisDemo.services.SubjectService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class SubjectController {
     }
 
     @PostMapping
-    public SubjectTeacherDisplayDto addSubject(@RequestBody SubjectAdditionDto subjectAdditionDto){
+    public SubjectTeacherDisplayDto addSubject(@Valid @RequestBody SubjectAdditionDto subjectAdditionDto){
         return subjectService.addSubject(subjectAdditionDto);
     }
 }

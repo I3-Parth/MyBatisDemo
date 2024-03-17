@@ -8,6 +8,7 @@ import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.repository.StudentRepository;
 import com.example.MyBatisDemo.repository.SubjectRepository;
 import com.example.MyBatisDemo.services.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,12 +39,12 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentDisplayDto addStudent(@RequestBody StudentAdditionDto studentAdditionDto){
+    public StudentDisplayDto addStudent(@Valid @RequestBody StudentAdditionDto studentAdditionDto){
         return studentService.addStudent(studentAdditionDto);
     }
 
     @PostMapping("/{id}/subjects")
-    public StudentSubjectsDisplayDto assignSubjectsToStudent(@PathVariable(value = "id")Long id, @RequestBody StudentSubjectsAdditionDto subjectsAdditionDto){
+    public StudentSubjectsDisplayDto assignSubjectsToStudent(@Valid@PathVariable(value = "id")Long id, @RequestBody StudentSubjectsAdditionDto subjectsAdditionDto){
         return studentService.assignSubjectsToStudent(id, subjectsAdditionDto);
     }
 }
