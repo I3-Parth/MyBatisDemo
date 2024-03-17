@@ -1,5 +1,6 @@
 package com.example.MyBatisDemo.dto;
 
+import com.example.MyBatisDemo.model.TeacherEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -12,5 +13,5 @@ public class SubjectAdditionDto {
     @NotBlank(message = "credits is mandatory")
     private int credits;
     @NotBlank(message = "teacher is mandatory")
-    private Long teacher;
+    private TeacherEntity teacher;
 }
