@@ -22,8 +22,7 @@ public class TeacherService {
     TeacherMapper teacherMapper;
 
     public List<TeacherDisplayDto> getAllTeachers(){
-        List<TeacherEntity> teacherEntities = teacherRepository.findAllTeachers();
-        return teacherEntities.stream().map(teacherMapper::convertTeacherEntityToTeacherDisplayDto).collect(Collectors.toList());
+        return teacherMapper.convertListOfTeacherEntityToTeacherDisplayDto(teacherRepository.findAllTeachers());
     }
 
     public TeacherDisplayDto getTeacherById(Long id){

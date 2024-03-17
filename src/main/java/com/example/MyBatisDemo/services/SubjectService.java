@@ -23,8 +23,7 @@ public class SubjectService {
     SubjectRepository subjectRepository;
 
     public List<SubjectDisplayDto> getAllSubjects(){
-        List<SubjectEntity> subjectEntities = subjectRepository.findAllSubjects();
-        return subjectEntities.stream().map(subjectMapper::convertSubjectEntityToSubjectDisplayDto).collect(Collectors.toList());
+        return subjectMapper.convertListOfSubjectEntityToSubjectDisplayDto(subjectRepository.findAllSubjects());
     }
 
     public SubjectTeacherDisplayDto getSubjectById(Long id){

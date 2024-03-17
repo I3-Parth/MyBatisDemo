@@ -23,8 +23,7 @@ public class StudentService {
     StudentMapper studentMapper;
 
     public List<StudentDisplayDto> getAllStudents(){
-        List<StudentEntity> studentEntities = studentRepository.findAllStudents();
-        return studentEntities.stream().map(studentMapper::convertStudentEntityToStudentDisplayDto).collect(Collectors.toList());
+        return studentMapper.convertListOfStudentEntityToStudentDisplayDto(studentRepository.findAllStudents());
     }
 
     public StudentDisplayDto getStudentById(Long id){

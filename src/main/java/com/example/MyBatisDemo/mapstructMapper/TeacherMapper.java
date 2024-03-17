@@ -6,6 +6,8 @@ import com.example.MyBatisDemo.model.TeacherEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
 public interface TeacherMapper {
     @Mapping(source = "id", target = "id")
@@ -30,6 +32,6 @@ public interface TeacherMapper {
     @Mapping(source = "subjects", target = "subjects")
     TeacherSubjectsDisplayDto convertTeacherEntityToTeacherSubjectsDisplayDto(TeacherEntity teacherEntity);
 
+    List<TeacherDisplayDto> convertListOfTeacherEntityToTeacherDisplayDto(List<TeacherEntity> teacherEntity);
 
-//    TeacherEntity getTeacherEntity(Long teacherId);
 }
