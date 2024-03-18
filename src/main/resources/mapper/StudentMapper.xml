@@ -32,7 +32,7 @@
     </select>
 
     <select id="selectSubjectsForStudent" parameterType="java.lang.Long" resultType="com.example.MyBatisDemo.model.SubjectEntity" >
-        select s.id, s.name, s.credits from subject s INNER JOIN student_subject ss on s.id = ss.subject_id where ss. student_id = #{id}
+        select s.id, s.name, s.credits from subject s INNER JOIN student_subject ss on s.id = ss.subject_id where ss.student_id = #{id}
     </select>
 
     <insert id="addStudent" parameterType="com.example.MyBatisDemo.model.StudentEntity" >

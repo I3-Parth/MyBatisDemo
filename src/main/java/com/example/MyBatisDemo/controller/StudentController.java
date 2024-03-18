@@ -4,6 +4,7 @@ import com.example.MyBatisDemo.dto.StudentAdditionDto;
 import com.example.MyBatisDemo.dto.StudentDisplayDto;
 import com.example.MyBatisDemo.dto.StudentSubjectsAdditionDto;
 import com.example.MyBatisDemo.dto.StudentSubjectsDisplayDto;
+import com.example.MyBatisDemo.exceptions.ResourceNotFoundException;
 import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.repository.StudentRepository;
 import com.example.MyBatisDemo.repository.SubjectRepository;
@@ -44,7 +45,7 @@ public class StudentController {
     }
 
     @PostMapping("/{id}/subjects")
-    public StudentSubjectsDisplayDto assignSubjectsToStudent(@Valid@PathVariable(value = "id")Long id, @RequestBody StudentSubjectsAdditionDto subjectsAdditionDto){
+    public StudentSubjectsDisplayDto assignSubjectsToStudent(@Valid@PathVariable(value = "id")Long id, @RequestBody StudentSubjectsAdditionDto subjectsAdditionDto) throws ResourceNotFoundException {
         return studentService.assignSubjectsToStudent(id, subjectsAdditionDto);
     }
 }
