@@ -1,8 +1,15 @@
 package com.example.MyBatisDemo.controller;
 
+import com.example.MyBatisDemo.dto.StudentAdditionDto;
+import com.example.MyBatisDemo.dto.StudentDisplayDto;
+import com.example.MyBatisDemo.dto.StudentSubjectsAdditionDto;
+import com.example.MyBatisDemo.dto.StudentSubjectsDisplayDto;
+import com.example.MyBatisDemo.exceptions.ResourceNotFoundException;
 import com.example.MyBatisDemo.model.StudentEntity;
 import com.example.MyBatisDemo.repository.StudentRepository;
 import com.example.MyBatisDemo.repository.SubjectRepository;
+import com.example.MyBatisDemo.services.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,33 +22,30 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    StudentRepository studentRepository;
-
+    StudentService studentService;
 
     @GetMapping
-    public List<StudentEntity> getAllStudents(){
-        return studentRepository.findAllStudents();
+    public List<StudentDisplayDto> getAllStudents(){
+        return studentService.getAllStudents();
     }
 
     @GetMapping("/{id}")
-    public StudentEntity getStudentById(@PathVariable(value = "id")Long id){
-        return studentRepository.findStudentById(id);
+    public StudentDisplayDto getStudentById(@PathVariable(value = "id")Long id){
+        return studentService.getStudentById(id);
     }
 
     @GetMapping("/{id}/subjects")
-    public StudentEntity findSubjectsByStudentId(@PathVariable(value = "id")Long id){
-        return studentRepository.findSubjectsByStudentId(id);
+    public StudentSubjectsDisplayDto findSubjectsByStudentId(@PathVariable(value = "id")Long id){
+        return studentService.findSubjectsByStudentId(id);
     }
 
     @PostMapping
-    public StudentEntity addStudent(@RequestBody StudentEntity student){
-        Long id = studentRepository.addStudent(student);
-        return studentRepository.findStudentById(id);
+    public StudentDisplayDto addStudent(@Valid @RequestBody StudentAdditionDto studentAdditionDto){
+        return studentService.addStudent(studentAdditionDto);
     }
 
     @PostMapping("/{id}/subjects")
-    public StudentEntity assignSubjectsToStudent(@PathVariable(value = "id")Long id, @RequestBody List<Long> subjectIds){
-        studentRepository.assignSubjectsToStudent(id,subjectIds);
-        return studentRepository.findSubjectsByStudentId(id);
+    public StudentSubjectsDisplayDto assignSubjectsToStudent(@Valid@PathVariable(value = "id")Long id, @RequestBody StudentSubjectsAdditionDto subjectsAdditionDto) throws ResourceNotFoundException {
+        return studentService.assignSubjectsToStudent(id, subjectsAdditionDto);
     }
 }
