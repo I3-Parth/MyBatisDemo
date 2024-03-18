@@ -19,7 +19,7 @@ public interface SubjectMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "credits", target = "credits")
-    @Mapping(source = "teacher", target = "teacher")
+    @Mapping(target = "teacher", expression = "java(getTeacherEntity(subjectAdditionDto))")
     SubjectEntity convertSubjectAdditionDtoToSubjectEntity(SubjectAdditionDto subjectAdditionDto);
 
 
@@ -34,6 +34,13 @@ public interface SubjectMapper {
     @Mapping(source = "credits", target = "credits")
     @Mapping(source = "teacher", target = "teacher")
     SubjectTeacherDisplayDto convertSubjectEntityToSubjectTeacherDisplayDto(SubjectEntity subjectEntity);
+
+
+    default TeacherEntity getTeacherEntity(SubjectAdditionDto subjectAdditionDto){
+        TeacherEntity teacherEntity = new TeacherEntity();
+        teacherEntity.setId(subjectAdditionDto.getTeacherId());
+        return teacherEntity;
+    }
 
     List<SubjectDisplayDto> convertListOfSubjectEntityToSubjectDisplayDto(List<SubjectEntity> subjectEntity);
 }
