@@ -1,5 +1,6 @@
 package com.example.MyBatisDemo.repository;
 
+import com.example.MyBatisDemo.config.MyBatisDBConnMapper;
 import com.example.MyBatisDemo.model.StudentEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Mapper
+@MyBatisDBConnMapper
 public interface StudentRepository {
     List<StudentEntity> findAllStudents(@Param("name") String name,@Param("age") Integer age,@Param("city") String city);
     StudentEntity findStudentById(Long id);
