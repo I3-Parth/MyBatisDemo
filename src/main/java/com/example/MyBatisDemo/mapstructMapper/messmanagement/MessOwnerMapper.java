@@ -12,14 +12,14 @@ import java.util.List;
 public interface MessOwnerMapper {
 
     @Mapping(source = "name",target = "name")
-    @Mapping(source = "contactNumber",target = "contact_number")
+    @Mapping(source = "contactNumber",target = "contactNumber")
     @Mapping(source = "email",target = "email")
     @Mapping(source = "mess",target = "mess")
     MessOwnerEntity convertMessOwnerAdditionDtoToMessOwnerEntity(MessOwnerAdditionDto messOwnerAdditionDto);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name",target = "name")
-    @Mapping(source = "contact_number",target = "contactNumber")
+    @Mapping(source = "contactNumber",target = "contactNumber")
     @Mapping(source = "email",target = "email")
     @Mapping(source = "mess",target = "mess")
     MessOwnerDisplayDto convertMessEntityToMessOwnerDisplayDto(MessOwnerEntity messOwnerEntity);

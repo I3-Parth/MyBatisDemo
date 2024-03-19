@@ -3,6 +3,7 @@ package com.example.MyBatisDemo.config;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+
+@MapperScan(value = "com.example.MyBatisDemo", annotationClass = MessManagementConnMapper.class , sqlSessionFactoryRef = "MessManagementSessionFactory")
 
 @Configuration
 public class MessManagementDataSourceConfig {
@@ -25,7 +28,7 @@ public class MessManagementDataSourceConfig {
                 .password("postgres").build();
     }
 
-    @Bean(name = "sqlSessionFactory2")
+    @Bean(name = "MessManagementSessionFactory")
     public SqlSessionFactory sqlSessionFactory2(@Qualifier("dataSource2")final DataSource dataSource2)throws Exception{
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource2);
@@ -34,7 +37,7 @@ public class MessManagementDataSourceConfig {
     }
 
     @Bean(name = "sqlSessionTemplate2")
-    public SqlSessionTemplate sqlSessionTemplate2(@Qualifier("sqlSessionFactory2") final SqlSessionFactory sqlSessionFactory2) {
+    public SqlSessionTemplate sqlSessionTemplate2(@Qualifier("MessManagementSessionFactory") final SqlSessionFactory sqlSessionFactory2) {
         return new SqlSessionTemplate(sqlSessionFactory2);
     }
 

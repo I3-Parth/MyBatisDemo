@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class MessOwnerEntity {
     private Long id;
     private String name;
-    private String contact_number;
+    private String contactNumber;
     private String email;
     private MessEntity mess;
 }

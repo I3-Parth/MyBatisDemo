@@ -9,19 +9,7 @@
         <typeAlias type="com.example.MyBatisDemo.model.TeacherEntity" alias="TeacherEntity" />
     </typeAliases>
 
-    <environments default = "development">
-        <environment id = "development">
-            <transactionManager type = "JDBC"/>
 
-            <dataSource type = "POOLED">
-                <property name = "driver" value = "org.postgresql.Driver"/>
-                <property name = "url" value = "jdbc:postgresql://localhost:5432/messManagement"/>
-                <property name = "username" value = "postgres"/>
-                <property name = "password" value = "postgres"/>
-            </dataSource>
-
-        </environment>
-    </environments>
     <mappers>
         <mapper resource = "mybatis/mapper/StudentMapper.xml" />
         <mapper resource = "mybatis/mapper/SubjectMapper.xml" />
