@@ -1,9 +1,6 @@
 package com.example.MyBatisDemo.services.messmanagement;
 
-import com.example.MyBatisDemo.dto.messmanagement.HostelAdditionDto;
-import com.example.MyBatisDemo.dto.messmanagement.HostelDisplayDto;
-import com.example.MyBatisDemo.dto.messmanagement.MessOwnerAdditionDto;
-import com.example.MyBatisDemo.dto.messmanagement.MessOwnerDisplayDto;
+import com.example.MyBatisDemo.dto.messmanagement.*;
 import com.example.MyBatisDemo.mapstructMapper.messmanagement.HostelMapper;
 import com.example.MyBatisDemo.mapstructMapper.messmanagement.MessMapper;
 import com.example.MyBatisDemo.mapstructMapper.messmanagement.MessOwnerMapper;
@@ -30,9 +27,9 @@ public class MessOwnerService {
         return messOwnerMapper.convertListOfMessEntityToMessOwnerDisplayDto(messOwnerRepository.findAllMessOwners());
     }
 
-    public MessOwnerDisplayDto addMessOwner(MessOwnerAdditionDto messOwnerAdditionDto){
+    public MessOwnerResponseDto addMessOwner(MessOwnerAdditionDto messOwnerAdditionDto){
         MessOwnerEntity messOwnerEntity = messOwnerMapper.convertMessOwnerAdditionDtoToMessOwnerEntity(messOwnerAdditionDto);
         messOwnerRepository.addMessOwner(messOwnerEntity);
-        return messOwnerMapper.convertMessEntityToMessOwnerDisplayDto(messOwnerEntity);
+        return messOwnerMapper.convertMessOwnerEntityToMessOwnerResponseDto(messOwnerEntity);
     }
 }

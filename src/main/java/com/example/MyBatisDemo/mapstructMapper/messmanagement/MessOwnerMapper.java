@@ -2,6 +2,8 @@ package com.example.MyBatisDemo.mapstructMapper.messmanagement;
 
 import com.example.MyBatisDemo.dto.messmanagement.MessOwnerAdditionDto;
 import com.example.MyBatisDemo.dto.messmanagement.MessOwnerDisplayDto;
+import com.example.MyBatisDemo.dto.messmanagement.MessOwnerResponseDto;
+import com.example.MyBatisDemo.model.messmanagement.MessEntity;
 import com.example.MyBatisDemo.model.messmanagement.MessOwnerEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,7 +16,7 @@ public interface MessOwnerMapper {
     @Mapping(source = "name",target = "name")
     @Mapping(source = "contactNumber",target = "contactNumber")
     @Mapping(source = "email",target = "email")
-    @Mapping(source = "mess",target = "mess")
+    @Mapping(target = "mess", expression = "java(getMessEntity(messOwnerAdditionDto))")
     MessOwnerEntity convertMessOwnerAdditionDtoToMessOwnerEntity(MessOwnerAdditionDto messOwnerAdditionDto);
 
     @Mapping(source = "id", target = "id")
@@ -24,5 +26,17 @@ public interface MessOwnerMapper {
     @Mapping(source = "mess",target = "mess")
     MessOwnerDisplayDto convertMessEntityToMessOwnerDisplayDto(MessOwnerEntity messOwnerEntity);
 
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name",target = "name")
+    @Mapping(source = "contactNumber",target = "contactNumber")
+    @Mapping(source = "email",target = "email")
+    @Mapping(source = "mess.id",target = "messId")
+    MessOwnerResponseDto convertMessOwnerEntityToMessOwnerResponseDto(MessOwnerEntity messOwnerEntity);
     List<MessOwnerDisplayDto> convertListOfMessEntityToMessOwnerDisplayDto(List<MessOwnerEntity> messOwnerEntities);
+
+    default MessEntity getMessEntity(MessOwnerAdditionDto messOwnerAdditionDto){
+        MessEntity messEntity = new MessEntity();
+        messEntity.setId(messOwnerAdditionDto.getMessId());
+        return messEntity;
+    }
 }
