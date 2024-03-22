@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Mapper
 public interface StudentRepository {
-    List<StudentEntity> findAllStudents();
+    List<StudentEntity> findAllStudents(@Param("name") String name,@Param("age") Integer age,@Param("city") String city);
     StudentEntity findStudentById(Long id);
     StudentEntity findSubjectsByStudentId(Long id);
-    void addStudent(StudentEntity student);
+    boolean addStudent(StudentEntity student);
     void assignSubjectsToStudent(@Param("studentId") Long studentId, @Param("subjectIds") List<Long> subjectIds);
 }

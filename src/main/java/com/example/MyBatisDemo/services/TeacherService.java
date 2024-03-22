@@ -34,7 +34,8 @@ public class TeacherService {
     }
 
     public TeacherDisplayDto addTeacher(TeacherAdditionDto teacherAdditionDto){
-        teacherRepository.addTeacher(teacherMapper.convertTeacherAdditionDtoToTeacherEntity(teacherAdditionDto));
-        return getTeacherById(teacherAdditionDto.getId());
+        TeacherEntity teacherEntity = teacherMapper.convertTeacherAdditionDtoToTeacherEntity(teacherAdditionDto);
+        teacherRepository.addTeacher(teacherEntity);
+        return teacherMapper.convertTeacherEntityToTeacherDisplayDto(teacherEntity);
     }
 }

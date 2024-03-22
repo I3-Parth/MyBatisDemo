@@ -35,7 +35,7 @@
         select * from subject where teacher_id = #{id}
     </select>
 
-    <insert id="addTeacher" parameterType="com.example.MyBatisDemo.model.TeacherEntity">
+    <insert id="addTeacher" parameterType="com.example.MyBatisDemo.model.TeacherEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into teacher (name, age, email, city) values (#{name}, #{age}, #{email}, #{city})
     </insert>
 </mapper>

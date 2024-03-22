@@ -19,9 +19,20 @@
         <result property="city" column="city" />
     </resultMap>
 
-    <select id="findAllStudents" resultMap="StudentInfoResultMap" >
-        select id, name, age, email, city from student
-    </select>
+        <select id="findAllStudents" parameterType="map" resultMap="StudentInfoResultMap" >
+            select id, name, age, email, city from student
+            <where>
+                <if test="name != null">
+                    AND name like #{name}
+                </if>
+                <if test="city != null">
+                    AND city like #{city}
+                </if>
+                <if test="age != null">
+                    AND age = #{age}
+                </if>
+            </where>
+        </select>
 
     <select id="findStudentById" resultMap="StudentInfoResultMap" parameterType="java.lang.Long">
         select id, name, age, email, city from student where id = #{id}
@@ -35,13 +46,13 @@
         select s.id, s.name, s.credits from subject s INNER JOIN student_subject ss on s.id = ss.subject_id where ss.student_id = #{id}
     </select>
 
-    <insert id="addStudent" parameterType="com.example.MyBatisDemo.model.StudentEntity" >
-        insert into student (id, name, age, email, city) values (#{id} ,#{name}, #{age}, #{email}, #{city})
+    <insert id="addStudent" parameterType="com.example.MyBatisDemo.model.StudentEntity" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        insert into student (name, age, email, city) values (#{name}, #{age}, #{email}, #{city})
     </insert>
 
     <insert id="assignSubjectsToStudent" parameterType="map">
         <foreach collection="subjectIds" item="subjectId" separator=";" >
-            INSERT INTO student_subject (id, student_id, subject_id) VALUES ((SELECT MAX(id) + 1 AS id FROM student_subject), #{studentId}, #{subjectId})
+            INSERT INTO student_subject (student_id, subject_id) VALUES (#{studentId}, #{subjectId})
         </foreach>
     </insert>
 </mapper>

@@ -27,8 +27,8 @@ public class StudentService {
 
     @Autowired
     SubjectRepository subjectRepository;
-    public List<StudentDisplayDto> getAllStudents(){
-        return studentMapper.convertListOfStudentEntityToStudentDisplayDto(studentRepository.findAllStudents());
+    public List<StudentDisplayDto> getAllStudents(String name, Integer age, String city){
+        return studentMapper.convertListOfStudentEntityToStudentDisplayDto(studentRepository.findAllStudents(name, age, city));
     }
 
     public StudentDisplayDto getStudentById(Long id){
@@ -40,8 +40,9 @@ public class StudentService {
     }
 
     public StudentDisplayDto addStudent(StudentAdditionDto studentAdditionDto){
-        studentRepository.addStudent(studentMapper.convertStudentAdditionDtoToStudentEntity(studentAdditionDto));
-        return getStudentById(studentAdditionDto.getId());
+        StudentEntity studentEntity = studentMapper.convertStudentAdditionDtoToStudentEntity(studentAdditionDto);
+        studentRepository.addStudent(studentEntity);
+        return studentMapper.convertStudentEntityToStudentDisplayDto(studentEntity);
     }
 
     public StudentSubjectsDisplayDto assignSubjectsToStudent(Long id, StudentSubjectsAdditionDto subjectsAdditionDto)throws ResourceNotFoundException {

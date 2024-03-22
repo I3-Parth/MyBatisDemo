@@ -25,8 +25,10 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public List<StudentDisplayDto> getAllStudents(){
-        return studentService.getAllStudents();
+    public List<StudentDisplayDto> getAllStudents(@RequestParam(name = "name",required = false)String name,
+                                                  @RequestParam(name = "age",required = false)Integer age,
+                                                  @RequestParam(name = "city",required = false)String city){
+        return studentService.getAllStudents(name, age, city);
     }
 
     @GetMapping("/{id}")
@@ -41,7 +43,7 @@ public class StudentController {
 
     @PostMapping
     public StudentDisplayDto addStudent(@Valid @RequestBody StudentAdditionDto studentAdditionDto){
-        return studentService.addStudent(studentAdditionDto);
+         return studentService.addStudent(studentAdditionDto);
     }
 
     @PostMapping("/{id}/subjects")
